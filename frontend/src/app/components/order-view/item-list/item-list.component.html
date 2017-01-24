@@ -1,0 +1,14 @@
+<ul class="list-group item-list">
+
+
+  <li class="list-group-item item-list-item" *ngFor="let item of order.items" (change)="calculateTotal()">
+    <span class="badge item-price">14&nbsp; $</span>
+    <span class="item-remove glyphicon glyphicon-remove" (click)="removeItem(item)"></span>
+    {{item.label}}
+  </li>
+
+  <!--<li class="list-group-item total-price">-->
+    <!--<span><span class="glyphicon glyphicon-usd"></span>{{total}}</span>-->
+  <!--</li>-->
+
+</ul>

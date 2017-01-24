@@ -1,0 +1,24 @@
+<div class="col-md-4">
+  <div class="thumbnail">
+    <div class="caption">
+
+      <h4 class="pull-right"><span class="glyphicon glyphicon-time">
+          </span>{{ order.created | date:'shortTime'}}</h4>
+
+
+      <h3>Table #{{ order.orderId }}</h3>
+      <h4><span class="glyphicon glyphicon-cutlery"></span>
+      {{order.diners}}
+      </h4>
+
+      <h4><span class="glyphicon glyphicon-usd"></span>{{order.total}}</h4>
+
+      <p>
+        <a class="btn btn-info" role="button" (click)="editOrder(order.id)">
+          <span class="glyphicon glyphicon-edit"></span>
+        </a>
+
+      </p>
+    </div>
+  </div>
+</div>

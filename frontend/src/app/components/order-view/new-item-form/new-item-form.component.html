@@ -1,0 +1,15 @@
+<!-- NEW ITEM FORM -->
+<form class="form-inline">
+
+  <div class="form-group" >
+    <label>Add Item:</label>
+    <select class="form-control" #selectedItem>
+      <option *ngFor="let item of items" [value]="item.itemId">{{item.label}}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <button class="btn btn-success form-control" (click)=selectItem(selectedItem.value)>add</button>
+  </div>
+
+</form>
