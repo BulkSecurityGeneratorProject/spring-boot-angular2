@@ -16,8 +16,8 @@ public final class HeaderUtil {
 
     public static HttpHeaders createAlert(String message, String param) {
         HttpHeaders headers = new HttpHeaders();
-        headers.add("X-ng2HipsterApp-alert", message);
-        headers.add("X-ng2HipsterApp-params", param);
+        headers.add("X-Naddame-alert", message);
+        headers.add("X-Naddame-params", param);
         return headers;
     }
 
@@ -36,8 +36,8 @@ public final class HeaderUtil {
     public static HttpHeaders createFailureAlert(String entityName, String errorKey, String defaultMessage) {
         log.error("Entity creation failed, {}", defaultMessage);
         HttpHeaders headers = new HttpHeaders();
-        headers.add("X-ng2HipsterApp-error", defaultMessage);
-        headers.add("X-ng2HipsterApp-params", entityName);
+        headers.add("X-Naddame-error", defaultMessage);
+        headers.add("X-Naddame-params", entityName);
         return headers;
     }
 }

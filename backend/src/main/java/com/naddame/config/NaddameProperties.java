@@ -4,7 +4,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.web.cors.CorsConfiguration;
 
 /**
- * Properties specific to JHipster.
+ * Properties specific to Naddame.
  *
  * <p>
  *     Properties are configured in the application.yml file.
@@ -162,7 +162,7 @@ public class NaddameProperties {
 
     public static class Mail {
 
-        private String from = "ng2hipster@localhost";
+        private String from = "naddame@localhost";
 
         private String baseUrl = "";
 
@@ -373,7 +373,7 @@ public class NaddameProperties {
 
             private int port = 2003;
 
-            private String prefix = "ng2hipster";
+            private String prefix = "naddame";
 
             public boolean isEnabled() {
                 return enabled;

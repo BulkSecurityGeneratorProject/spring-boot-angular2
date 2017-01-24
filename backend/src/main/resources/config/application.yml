@@ -49,7 +49,7 @@ spring:
             clientId: xxx
             clientSecret: xxx
 
-        # jhipster-needle-add-social-configuration
+        # Naddame-needle-add-social-configuration
 
 security:
     basic:
@@ -61,7 +61,7 @@ server:
             http-only: true
 
 # ===================================================================
-# JHipster specific properties
+# Naddame specific properties
 # ===================================================================
 
 nad:

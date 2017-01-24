@@ -37,7 +37,7 @@ server:
         min-response-size: 1024
 
 # ===================================================================
-# JHipster specific properties
+# Naddame specific properties
 # ===================================================================
 
 nad:
@@ -54,8 +54,8 @@ nad:
                 secret: 53cd218b617c482a82441690ccf16b0fbaf61ef3
                 # Token is valid 24 hours
                 tokenValidityInSeconds: 86400
-    mail: # specific JHipster mail property, for standard properties see MailProperties
-        from: ng2hipster@localhost
+    mail: # specific Naddame mail property, for standard properties see MailProperties
+        from: naddame@localhost
         baseUrl: http://my-server-url-to-change # Modify according to your server's URL
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
         jmx.enabled: true
@@ -63,7 +63,7 @@ nad:
             enabled: false
             host: localhost
             port: 2003
-            prefix: ng2hipster
+            prefix: naddame
         prometheus:
             enabled: false
             endpoint: /prometheusMetrics
