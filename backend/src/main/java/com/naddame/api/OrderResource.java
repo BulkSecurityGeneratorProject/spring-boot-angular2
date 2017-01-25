@@ -78,14 +78,15 @@ public class OrderResource {
      * or with status 400 (Bad Request) if the login or email is already in use,
      * or with status 500 (Internal Server Error) if the order couldn't be updated
      */
-    @PutMapping("/orders")
+    @PutMapping("/orders/{id}")
     @Secured(AuthoritiesConstants.ADMIN)
-    public ResponseEntity<Order> updateOrder(@RequestBody Order order) {
-        log.debug("REST request to update order : {}", order);
-        Optional<Order> existingOrder = orderReader.findOrder(order.getId());
+    public ResponseEntity<Order> updateOrder(@RequestBody Order order, @PathVariable Long id) {
+        log.debug("REST request to update order : {}", id);
+        Optional<Order> existingOrder = orderReader.findOrder(id);
         if (!existingOrder.isPresent()) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("orderManagement", "orderNotExists", "Can't update, no order found with the given id")).body(null);
         }
+        order.setId(id);
         orderWriter.updateOrder(order);
 
         return ResponseEntity.ok()
@@ -114,14 +115,28 @@ public class OrderResource {
      * @param paid the filter by paid orders status
      * @return the ResponseEntity with status 200 (OK) and with body the orders, or with status 404 (Not Found)
      */
-    @GetMapping("/orders/{paid}")
+    @GetMapping(value = "/orders/{paid}", params = "find=ByPaid")
     public ResponseEntity<?> findOrdersByPaid(@PathVariable boolean paid, @ApiParam Pageable pageable) throws URISyntaxException {
-        log.debug("REST request to get Orders : {}", paid);
+        log.debug("REST request to get Orders By Paid : {}", paid);
         Page<Order> page = orderReader.findOrders(paid, pageable);
 
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/orders");
 
         return new ResponseEntity<>(page, headers, HttpStatus.OK);
+    }
+
+    /**
+     * GET  /orders/:paid : get orders filter by paid
+     *
+     * @param id the filter by paid orders status
+     * @return the ResponseEntity with status 200 (OK) and with body the orders, or with status 404 (Not Found)
+     */
+    @GetMapping(value = "/orders/{id}")
+    public ResponseEntity<?> findOrder(@PathVariable Long id) throws URISyntaxException {
+        log.debug("REST request to get Orders : {}", id);
+        return  orderReader.findOrder(id)
+                .map(o -> ResponseEntity.ok(o))
+                .orElse(ResponseEntity.notFound().build());
     }
 
     /**

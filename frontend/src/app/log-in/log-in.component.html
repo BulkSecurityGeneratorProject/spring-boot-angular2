@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="login jumbotron center-block">
+        <form #loginForm="ngForm" class="form-signin">
+            <h1>Sign in</h1>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" [(ngModel)]="loginRequest.username" class="form-control" name="username" id="username" required minlength="4" placeholder="Your login">
+                <div *ngIf="formErrors.username" class="alert alert-danger">
+                  {{ formErrors.username }}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" [(ngModel)]="loginRequest.password" class="form-control" name="password" id="password" required minlength="4" placeholder="Your password">
+                <div *ngIf="formErrors.password" class="alert alert-danger">
+                  {{ formErrors.password }}
+                </div>
+            </div>
+            <div class="form-group">
+              <label for="rememberMe">
+                <input type="checkbox" [(ngModel)]="loginRequest.rememberMe" name="rememberMe" id="rememberMe" checked>
+                <span>Remember me</span>
+              </label>
+            </div>
+            <button type="button" [disabled]="!loginForm.form.valid" class="btn btn-lg btn-primary" (click)=handleLogin($event) >Sign in</button>
+        </form>
+    </div>
+</div>

@@ -8,9 +8,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class RestaurantService {
 
-  private ordersUrl = 'http://localhost:3000/orders';
-  private headers = new Headers({'Content-Type': 'application/json'});
-
+  private ordersUrl = 'http://localhost:8080/api/orders';
   public constructor(private router: Router, private http: Http) {}
 
   private handleError(error: any): Promise<any> {
@@ -19,14 +17,15 @@ export class RestaurantService {
   }
 
   getOrders(): Promise<Order[]> {
-    return this.http.get(this.ordersUrl).toPromise().then(response =>
-      response.json() as Order[]).catch(this.handleError);
+    return this.http.get(this.ordersUrl, {headers: this.prepareHeaders()}).toPromise().then(response => {
+      console.log("getOrders", response.json());
+      return response.json().content as Order[]}).catch(this.handleError);
   }
 
   saveOrder(_order) {
     const url = `${this.ordersUrl}/${_order.id}`;
     return this.http
-      .put(url, JSON.stringify(_order), {headers: this.headers})
+      .put(url, JSON.stringify(_order), {headers: this.prepareHeaders()})
       .toPromise()
       .then(() => _order)
       .catch(this.handleError);
@@ -37,16 +36,16 @@ export class RestaurantService {
   newOrder() {
     let _order = new Order(1);
     return this.http
-      .post(this.ordersUrl, JSON.stringify(_order), {headers: this.headers})
+      .post(this.ordersUrl, JSON.stringify(_order), {headers: this.prepareHeaders()})
       .toPromise()
-      .then(res => {res.json(); this.router.navigate( ['order', _order.id]); })
+      .then(res => {_order = res.json(); this.router.navigate( ['order', _order.id]); })
       .catch(this.handleError);
   }
 
   getOrderById(orderId) {
     console.log("getOrderById", orderId);
     const url = `${this.ordersUrl}/${orderId}`;
-    return this.http.get(url)
+    return this.http.get(url, {headers: this.prepareHeaders()})
       .toPromise()
       .then(response => response.json() as Order)
       .catch(this.handleError);
@@ -56,5 +55,13 @@ export class RestaurantService {
     _order.closed = new Date();
     _order.paid   = true;
     return this.saveOrder(_order);
+  }
+
+  prepareHeaders(){
+    return new Headers({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer '+localStorage.getItem('jwt')
+    });
   }
 }

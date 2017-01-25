@@ -12,7 +12,7 @@ import java.util.Objects;
  *
  */
 @SuppressWarnings("serial")
-@Document(collection = "pl_sequence")
+@Document(collection = "nad_sequence")
 public class Sequence implements Serializable {
 
 	@Id

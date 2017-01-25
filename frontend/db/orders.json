@@ -1,4 +1,7 @@
 {
+  "authenticate": {
+    "id_token": "jwt token"
+  },
   "orders": [
     {
       "orderId": "238b",

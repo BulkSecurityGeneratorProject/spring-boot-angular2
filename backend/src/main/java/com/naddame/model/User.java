@@ -19,7 +19,7 @@ import java.util.Set;
 /**
  * A user.
  */
-@Document(collection = "user_account")
+@Document(collection = "nad_users")
 public class User extends AbstractAuditingEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;

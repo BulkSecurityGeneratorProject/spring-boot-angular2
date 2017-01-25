@@ -12,7 +12,7 @@ import java.util.Set;
 /**
  * Created by djamel Hamas on 24/01/2017.
  */
-@Document(collection = "orders")
+@Document(collection = "nad_orders")
 public class Order  extends AbstractAuditingEntity implements Serializable {
 
     @Id
@@ -26,6 +26,7 @@ public class Order  extends AbstractAuditingEntity implements Serializable {
 
     @Indexed
     public boolean paid = false;
+
     private ZonedDateTime closed = ZonedDateTime.now();
 
     public Order() {

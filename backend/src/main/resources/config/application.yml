@@ -5,6 +5,14 @@
 # for example application-dev.yml if you use the "dev" profile.
 # ===================================================================
 
+logging:
+    level:
+        root: warn
+        com.productlive: DEBUG
+        org.springframework.web: DEBUG
+        #org.springframework.mail: DEBUG
+        org.hibernate: ERROR
+
 # ===================================================================
 # Standard Spring Boot properties.
 # Full reference is available at:
@@ -69,13 +77,13 @@ nad:
         corePoolSize: 2
         maxPoolSize: 50
         queueCapacity: 10000
-    #cors: #By default CORS are not enabled. Uncomment to enable.
-        #allowed-origins: "*"
-        #allowed-methods: GET, PUT, POST, DELETE, OPTIONS
-        #allowed-headers: "*"
-        #exposed-headers:
-        #allow-credentials: true
-        #max-age: 1800
+    cors: #By default CORS are not enabled. Uncomment to enable.
+        allowed-origins: "*"
+        allowed-methods: GET, PUT, POST, DELETE, OPTIONS
+        allowed-headers: authorization, if-none-match, Origin, Content-Type, X-Content-Range, X-Total-Count, Link, Auth-Token, PL-Token, Accept-Encoding, Content-Range, X-Range, range, X-Cache-Date, accept, Accept-Encoding, Accept-Language, Host, x-requested-with
+        exposed-headers: X-Cache-Date, Authorization, Location, Auth-Token, PL-Token, Content-Range, X-Content-Range, X-Total-Count, Link
+        allow-credentials: true
+        max-age: 1800
     mail:
         from: naddame@localhost
     swagger:

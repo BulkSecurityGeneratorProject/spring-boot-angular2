@@ -107,17 +107,4 @@ public class WebConfigurer implements ServletContextInitializer, EmbeddedServlet
         cachingHttpHeadersFilter.addMappingForUrlPatterns(disps, true, "/app/*");
         cachingHttpHeadersFilter.setAsyncSupported(true);
     }
-
-
-    @Bean
-    @ConditionalOnProperty(name = "nad.cors.allowed-origins")
-    public CorsFilter corsFilter() {
-        log.debug("Registering CORS filter");
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        CorsConfiguration config = naddameProperties.getCors();
-        source.registerCorsConfiguration("/api/**", config);
-        source.registerCorsConfiguration("/v2/api-docs", config);
-        source.registerCorsConfiguration("/oauth/**", config);
-        return new CorsFilter(source);
-    }
 }

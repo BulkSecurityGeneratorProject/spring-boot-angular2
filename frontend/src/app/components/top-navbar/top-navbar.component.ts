@@ -1,6 +1,7 @@
 import {Component, OnInit}         from '@angular/core';
 import {RestaurantService} from '../../services/restaurant.service';
 
+
 @Component({
   selector: 'my-top-navbar',
   templateUrl: './top-navbar.component.html'
