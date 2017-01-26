@@ -11,10 +11,13 @@ export class LoginService {
 
     constructor(private http:Http) {}
 
+  //private  url = location.protocol+'//'+location.hostname+(location.port?":"+location.port:"");
+  private  url = location.protocol+'//'+location.hostname+':8080';
+
     login(loginRequest: LoginRequest):Observable<Response> {
         let headers = new Headers({'Content-Type': 'application/json', 'Accept': 'application/json'});
 
-        return this.http.post('http://localhost:8080/api/authenticate', JSON.stringify(loginRequest), { headers: headers })
+        return this.http.post(this.url+'/api/authenticate', JSON.stringify(loginRequest), { headers: headers })
                         .do(resp => {
                             localStorage.setItem('jwt', resp.json().id_token);
                         });

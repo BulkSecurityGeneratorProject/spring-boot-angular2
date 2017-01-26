@@ -8,7 +8,8 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class RestaurantService {
 
-  private ordersUrl = 'http://localhost:8080/api/orders';
+  //private ordersUrl = location.protocol+'//'+location.hostname+(location.port?":"+location.port:"") + '/api/orders';
+  private ordersUrl = location.protocol+'//'+location.hostname+':8080/api/orders';
   public constructor(private router: Router, private http: Http) {}
 
   private handleError(error: any): Promise<any> {

@@ -7,7 +7,7 @@
 
 logging:
     level:
-        root: warn
+        root: error
         com.productlive: DEBUG
         org.springframework.web: DEBUG
         #org.springframework.mail: DEBUG
